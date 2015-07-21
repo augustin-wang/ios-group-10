@@ -14,7 +14,8 @@
 
 + (facebookPlaces *)getInstance;
 
-@property  CLLocationCoordinate2D currentCenter;
+@property BOOL autoGPSTracking;
+@property (nonatomic) CLLocationCoordinate2D currentCenter;
 @property (strong, nonatomic) NSMutableArray *places;
 @property (strong, nonatomic) NSString *keyword;
 

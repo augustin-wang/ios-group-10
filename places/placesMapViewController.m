@@ -13,15 +13,16 @@
 @implementation placesMapViewController
 
 - (void)viewDidLoad {
+    facebookPlaces *places = [facebookPlaces getInstance];
     [super viewDidLoad];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(25.04,121.55);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 10000, 10000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(places.currentCenter, 100, 100);
     [self.mapView setRegion:region animated:YES];
+    self.mapView.delegate = self;
     [self updatePlaces];
-    [[facebookPlaces getInstance] addObserver:self
-                                   forKeyPath:@"places"
-                                      options:0
-                                      context:nil];
+    [places addObserver:self
+             forKeyPath:@"places"
+                options:0
+                context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath
@@ -39,6 +40,12 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    NSLog(@"map moved....");
+    [facebookPlaces getInstance].currentCenter = mapView.centerCoordinate;
+}
+
 - (void)updatePlaces {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
 
@@ -48,7 +55,6 @@
         myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
         myAnnotation.title = data[@"name"];
         [annotations addObject:myAnnotation];
-        NSLog(@"name %@", data[@"name"]);
     }
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:annotations];

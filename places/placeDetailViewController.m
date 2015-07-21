@@ -17,6 +17,14 @@
     self.cityLabel.text = self.data[@"location"][@"city"];
     self.countryLabel.text = self.data[@"location"][@"country"];
     self.zipLabel.text = self.data[@"location"][@"zip"];
+    self.mapView.centerCoordinate = CLLocationCoordinate2DMake([self.data[@"location"][@"latitude"] floatValue], [self.data[@"location"][@"longitude"] floatValue]);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.mapView.centerCoordinate, 1000, 1000);
+    [self.mapView setRegion:viewRegion animated:YES];
+
+    MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
+    myAnnotation.coordinate = self.mapView.centerCoordinate;
+    myAnnotation.title = self.data[@"name"];
+    [self.mapView addAnnotation:myAnnotation];
 }
 
 @end
