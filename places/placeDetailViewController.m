@@ -7,6 +7,7 @@
 //
 
 #import "placeDetailViewController.h"
+#import "facebookPlaces.h"
 
 @implementation placeDetailViewController
 
@@ -28,6 +29,12 @@
     myAnnotation.coordinate = self.mapView.centerCoordinate;
     myAnnotation.title = self.data[@"name"];
     [self.mapView addAnnotation:myAnnotation];
+    [[facebookPlaces getInstance] getPlaceMeta:self.data[@"id"] successCB:^(id response) {
+        self.descriptionText.text = response[@"description"];
+        NSLog(@"call api ok! %@", response);
+    } failedCB:^(NSError *error) {
+        NSLog(@"Call api error! %@", error);
+    }];
 }
 
 @end

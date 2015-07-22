@@ -13,7 +13,7 @@
 @interface facebookPlaces : NSObject <CLLocationManagerDelegate>
 
 + (facebookPlaces *)getInstance;
-- (void)getPlaceMeta:(NSString *)id successCB:(void(^)())successCallback failedCB:(void(^)(NSError *error))failedCallback;
+- (void)getPlaceMeta:(NSString *)placeid successCB:(void(^)(id response))successCallback failedCB:(void(^)(NSError *error))failedCallback;
 
 @property BOOL autoGPSTracking;
 @property (nonatomic) CLLocationCoordinate2D currentCenter;

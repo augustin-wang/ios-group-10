@@ -89,7 +89,7 @@ NSString *apiURL = @"https://graph.facebook.com/%@";
     }];
 }
 
-- (void)getPlaceMeta:(NSString *)placeid successCB:(void(^)())successCallback failedCB:(void(^)(NSError *error))failedCallback {
+- (void)getPlaceMeta:(NSString *)placeid successCB:(void(^)(id response))successCallback failedCB:(void(^)(NSError *error))failedCallback {
     // https://graph.facebook.com/112295342181143?fields=photos{picture},description_html&access_token=xxxx
     NSString *token = [self getAccessToken];
 
@@ -102,7 +102,7 @@ NSString *apiURL = @"https://graph.facebook.com/%@";
     }
 
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:@"photos{picture},description_html" forKey:@"fields"];
+    [parameters setObject:@"photos{picture},description" forKey:@"fields"];
     if (token) {
         [parameters setObject:token forKey:@"access_token"];
     }
