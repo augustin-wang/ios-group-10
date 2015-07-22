@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3196E7241B5F51790039E35B /* placePhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3196E7231B5F51790039E35B /* placePhotosViewController.m */; };
 		31AB7B441B5381EE0099025E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B431B5381EE0099025E /* main.m */; };
 		31AB7B471B5381EE0099025E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B461B5381EE0099025E /* AppDelegate.m */; };
 		31AB7B4D1B5381EE0099025E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AB7B4B1B5381EE0099025E /* Main.storyboard */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3196E7221B5F51790039E35B /* placePhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = placePhotosViewController.h; sourceTree = "<group>"; };
+		3196E7231B5F51790039E35B /* placePhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = placePhotosViewController.m; sourceTree = "<group>"; };
 		31AB7B3E1B5381EE0099025E /* places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AB7B421B5381EE0099025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31AB7B431B5381EE0099025E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				31AB7B731B53998A0099025E /* placesMapViewController.m */,
 				31AB7B741B53998A0099025E /* placesTableViewController.h */,
 				31AB7B751B53998A0099025E /* placesTableViewController.m */,
+				3196E7221B5F51790039E35B /* placePhotosViewController.h */,
+				3196E7231B5F51790039E35B /* placePhotosViewController.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				31AB7B471B5381EE0099025E /* AppDelegate.m in Sources */,
 				31AB7B7D1B53A0230099025E /* facebookPlaces.m in Sources */,
 				31AB7B771B53998A0099025E /* placesMapViewController.m in Sources */,
+				3196E7241B5F51790039E35B /* placePhotosViewController.m in Sources */,
 				31AB7B781B53998A0099025E /* placesTableViewController.m in Sources */,
 				31AB7B441B5381EE0099025E /* main.m in Sources */,
 				31AB7B761B53998A0099025E /* placeDetailViewController.m in Sources */,
