@@ -26,7 +26,9 @@
     [[facebookPlaces getInstance] getPlaceMeta:self.data[@"id"] successCB:^(id response) {
         self.descriptionText.text = response[@"description"];
         if (response[@"photos"][@"data"][0][@"picture"]) {
-            [self.imageButton setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:response[@"photos"][@"data"][0][@"picture"]]];
+            self.pictures = response[@"photos"][@"data"];
+            [self.imageButton setTitle:[NSString stringWithFormat:@"view %lu photos", [self.pictures count]] forState:UIControlStateNormal];
+            [self.imageButton setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:self.pictures[0][@"picture"]]];
         }
         NSLog(@"call api ok! %@", response);
     } failedCB:^(NSError *error) {
