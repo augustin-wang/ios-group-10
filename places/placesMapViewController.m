@@ -8,7 +8,6 @@
 
 #import "placesMapViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import <SVProgressHUD.h>
 #import "facebookPlaces.h"
 
 @implementation placesMapViewController
@@ -45,16 +44,15 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSLog(@"inside the stupid method");
+}
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     NSLog(@"map moved....");
-    [SVProgressHUD show];
     [facebookPlaces getInstance].currentCenter = mapView.centerCoordinate;
-}
-
--(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
-{
-    [SVProgressHUD dismiss];
 }
 
 - (void)updatePlaces {
@@ -65,6 +63,7 @@
         MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
         myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
         myAnnotation.title = data[@"name"];
+        myAnnotation.subtitle = data[@"id"];
         [annotations addObject:myAnnotation];
     }
     [self.mapView removeAnnotations:self.mapView.annotations];

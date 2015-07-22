@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Zordius Chen. All rights reserved.
 //
 
-#import <SVProgressHUD.h>
 #import "placesTableViewController.h"
 #import "placeDetailViewController.h"
 #import "facebookPlaces.h"
@@ -14,7 +13,6 @@
 @implementation placesTableViewController
 
 - (void)viewDidLoad {
-    [SVProgressHUD show];
     [super viewDidLoad];
     [[facebookPlaces getInstance] addObserver:self
                   forKeyPath:@"places"
@@ -33,7 +31,6 @@
 {
     if ([keyPath isEqualToString:@"places"]) {
         [self.tableView reloadData];
-        [SVProgressHUD dismiss];
     } else {
         [super observeValueForKeyPath:keyPath
                              ofObject:object
