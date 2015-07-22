@@ -7,6 +7,7 @@
 //
 
 #import "placeDetailViewController.h"
+#import "facebookPlaces.h"
 
 @implementation placeDetailViewController
 
@@ -21,6 +22,16 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.mapView.centerCoordinate, 1000, 1000);
     [self.mapView setRegion:viewRegion animated:YES];
 
+    [[facebookPlaces getInstance] getPlaceMeta:self.data[@"id"] successCB:^(id response) {
+        self.descriptionText.text = response[@"description"];
+        NSLog(@"call api ok! %@", response);
+    } failedCB:^(NSError *error) {
+        NSLog(@"Call api error! %@", error);
+    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
     myAnnotation.coordinate = self.mapView.centerCoordinate;
     myAnnotation.title = self.data[@"name"];

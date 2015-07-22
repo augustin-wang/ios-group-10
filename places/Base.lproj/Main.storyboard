@@ -100,7 +100,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvb-WI-Avc">
-                                <rect key="frame" x="16" y="154" width="568" height="426"/>
+                                <rect key="frame" x="16" y="262" width="568" height="426"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="VC6-Y9-hXC"/>
                                     <constraint firstAttribute="width" secondItem="Qvb-WI-Avc" secondAttribute="height" multiplier="4:3" id="XEz-OI-fFX"/>
@@ -111,6 +111,15 @@
                                     </mask>
                                 </variation>
                             </mapView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLl-bK-J1O">
+                                <rect key="frame" x="16" y="154" width="568" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="E6d-SF-bzX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -122,22 +131,27 @@
                             <constraint firstItem="csC-zM-PcL" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="Kg3-Jk-xaJ"/>
                             <constraint firstItem="XqX-Cl-wPh" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="LQC-Ng-Q3z"/>
                             <constraint firstItem="Qvb-WI-Avc" firstAttribute="top" secondItem="csC-zM-PcL" secondAttribute="bottom" constant="8" id="Nk6-nQ-wuf"/>
+                            <constraint firstItem="RLl-bK-J1O" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="S2A-iT-5Fr"/>
                             <constraint firstItem="Qvb-WI-Avc" firstAttribute="leading" secondItem="csC-zM-PcL" secondAttribute="trailing" constant="-31" id="Sti-lw-i2Q"/>
+                            <constraint firstItem="RLl-bK-J1O" firstAttribute="top" secondItem="csC-zM-PcL" secondAttribute="bottom" constant="8" id="Tx7-nD-kxU"/>
                             <constraint firstItem="Qvb-WI-Avc" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="VdG-TG-q8A"/>
                             <constraint firstItem="csC-zM-PcL" firstAttribute="top" secondItem="hUm-wN-o8c" secondAttribute="bottom" constant="8" id="W4z-Eb-58f"/>
                             <constraint firstItem="csC-zM-PcL" firstAttribute="top" secondItem="VTm-YH-bEZ" secondAttribute="top" id="aNt-Aw-9NY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XqX-Cl-wPh" secondAttribute="trailing" id="d6a-yp-Koq"/>
                             <constraint firstItem="Qvb-WI-Avc" firstAttribute="trailing" secondItem="7uH-5R-TNA" secondAttribute="trailingMargin" id="dWO-NX-0dw"/>
+                            <constraint firstItem="Qvb-WI-Avc" firstAttribute="top" secondItem="RLl-bK-J1O" secondAttribute="bottom" constant="8" id="gtE-rg-jFG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hUm-wN-o8c" secondAttribute="trailing" id="nN2-xO-Tbe"/>
                             <constraint firstItem="6ik-tg-24S" firstAttribute="top" secondItem="VTm-YH-bEZ" secondAttribute="top" id="oNk-FX-kgd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RLl-bK-J1O" secondAttribute="trailing" id="rfv-6q-Sep"/>
                             <constraint firstItem="6ik-tg-24S" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="xOv-3F-H1l"/>
                             <constraint firstItem="VTm-YH-bEZ" firstAttribute="leading" secondItem="csC-zM-PcL" secondAttribute="trailing" constant="8" id="yie-2Y-n68"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Sti-lw-i2Q"/>
                                 <exclude reference="KJe-xd-vfC"/>
                                 <exclude reference="xOv-3F-H1l"/>
+                                <exclude reference="Nk6-nQ-wuf"/>
+                                <exclude reference="Sti-lw-i2Q"/>
                             </mask>
                         </variation>
                     </view>
@@ -145,6 +159,7 @@
                     <connections>
                         <outlet property="cityLabel" destination="csC-zM-PcL" id="Z0c-g9-2fh"/>
                         <outlet property="countryLabel" destination="VTm-YH-bEZ" id="RVa-BA-BWT"/>
+                        <outlet property="descriptionText" destination="RLl-bK-J1O" id="azM-CV-Iry"/>
                         <outlet property="mapView" destination="Qvb-WI-Avc" id="XdN-nr-Aum"/>
                         <outlet property="streetLabel" destination="hUm-wN-o8c" id="LVq-Tg-GnB"/>
                         <outlet property="titleLabel" destination="XqX-Cl-wPh" id="dYc-nC-F3S"/>

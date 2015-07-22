@@ -13,8 +13,9 @@
 
 // For DEMO
 NSString *fakeApiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
+NSString *fakeApiURL2 = @"https://dl.dropboxusercontent.com/u/46004762/sample2.json";
 // Official API URL
-NSString *apiURL = @"https://graph.facebook.com/search";
+NSString *apiURL = @"https://graph.facebook.com/%@";
 
 @implementation facebookPlaces
 
@@ -79,12 +80,39 @@ NSString *apiURL = @"https://graph.facebook.com/search";
         [parameters setObject:token forKey:@"access_token"];
     }
 
-    [manager GET:token ? apiURL : fakeApiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:token ? [NSString stringWithFormat:apiURL, @"search"] : fakeApiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"call place api success!");
         self.places = responseObject[@"data"];
 //        NSLog(@"----API result: %@", self.places);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"call facebook api error! %@", error);
+    }];
+}
+
+- (void)getPlaceMeta:(NSString *)placeid successCB:(void(^)(id response))successCallback failedCB:(void(^)(NSError *error))failedCallback {
+    // https://graph.facebook.com/112295342181143?fields=photos{picture},description_html&access_token=xxxx
+    NSString *token = [self getAccessToken];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    // match with the application type returned from github.io or dropbox, useless to standard API
+    if (!token) {
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    }
+
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@"photos{picture},description" forKey:@"fields"];
+    if (token) {
+        [parameters setObject:token forKey:@"access_token"];
+    }
+
+    [manager GET:token ? [NSString stringWithFormat:apiURL, placeid] : fakeApiURL2 parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        successCallback(responseObject);
+        NSLog(@"----API result: %@", self.places);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"call facebook api error! %@", error);
+        failedCallback(error);
     }];
 }
 

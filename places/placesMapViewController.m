@@ -8,6 +8,7 @@
 
 #import "placesMapViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <SVProgressHUD.h>
 #import "facebookPlaces.h"
 
 @implementation placesMapViewController
@@ -18,11 +19,15 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(places.currentCenter, 100, 100);
     [self.mapView setRegion:region animated:YES];
     self.mapView.delegate = self;
-    [self updatePlaces];
     [places addObserver:self
              forKeyPath:@"places"
                 options:0
                 context:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self updatePlaces];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath
@@ -43,7 +48,13 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     NSLog(@"map moved....");
+    [SVProgressHUD show];
     [facebookPlaces getInstance].currentCenter = mapView.centerCoordinate;
+}
+
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    [SVProgressHUD dismiss];
 }
 
 - (void)updatePlaces {
