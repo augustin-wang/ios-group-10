@@ -120,12 +120,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iyh-YV-DqA">
+                                <rect key="frame" x="16" y="696" width="568" height="426"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iyh-YV-DqA" secondAttribute="height" multiplier="4:3" id="Vxo-3p-nrc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hUm-wN-o8c" firstAttribute="top" secondItem="XqX-Cl-wPh" secondAttribute="bottom" constant="8" id="0Ba-aG-LuL"/>
+                            <constraint firstItem="iyh-YV-DqA" firstAttribute="trailing" secondItem="7uH-5R-TNA" secondAttribute="trailingMargin" id="1HD-S5-Yjf"/>
+                            <constraint firstItem="iyh-YV-DqA" firstAttribute="top" secondItem="Qvb-WI-Avc" secondAttribute="bottom" constant="8" id="7ZM-uI-kly"/>
                             <constraint firstItem="hUm-wN-o8c" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="9pH-Dl-3SS"/>
+                            <constraint firstItem="iyh-YV-DqA" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="AlQ-3S-qbl"/>
                             <constraint firstItem="XqX-Cl-wPh" firstAttribute="top" secondItem="1cd-0d-ws2" secondAttribute="bottom" id="Au7-5y-HWA"/>
+                            <constraint firstItem="Noc-l6-Jaw" firstAttribute="top" secondItem="iyh-YV-DqA" secondAttribute="bottom" constant="8" id="IiQ-fE-fTj"/>
                             <constraint firstItem="6ik-tg-24S" firstAttribute="leading" secondItem="VTm-YH-bEZ" secondAttribute="trailing" constant="8" id="JxR-1U-qE2"/>
                             <constraint firstItem="6ik-tg-24S" firstAttribute="top" secondItem="csC-zM-PcL" secondAttribute="bottom" constant="8" id="KJe-xd-vfC"/>
                             <constraint firstItem="csC-zM-PcL" firstAttribute="leading" secondItem="7uH-5R-TNA" secondAttribute="leadingMargin" id="Kg3-Jk-xaJ"/>
@@ -152,6 +162,7 @@
                                 <exclude reference="xOv-3F-H1l"/>
                                 <exclude reference="Nk6-nQ-wuf"/>
                                 <exclude reference="Sti-lw-i2Q"/>
+                                <exclude reference="IiQ-fE-fTj"/>
                             </mask>
                         </variation>
                     </view>
@@ -160,6 +171,7 @@
                         <outlet property="cityLabel" destination="csC-zM-PcL" id="Z0c-g9-2fh"/>
                         <outlet property="countryLabel" destination="VTm-YH-bEZ" id="RVa-BA-BWT"/>
                         <outlet property="descriptionText" destination="RLl-bK-J1O" id="azM-CV-Iry"/>
+                        <outlet property="imageView" destination="iyh-YV-DqA" id="8hV-c3-nh8"/>
                         <outlet property="mapView" destination="Qvb-WI-Avc" id="XdN-nr-Aum"/>
                         <outlet property="streetLabel" destination="hUm-wN-o8c" id="LVq-Tg-GnB"/>
                         <outlet property="titleLabel" destination="XqX-Cl-wPh" id="dYc-nC-F3S"/>

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *zipLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionText;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (strong, nonatomic) NSMutableDictionary *data;
 
