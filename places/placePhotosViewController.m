@@ -7,6 +7,7 @@
 //
 
 #import "placePhotosViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface placePhotosViewController ()
 
@@ -51,15 +52,15 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
     return [self.pictures count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
+    UIImageView *i = [[UIImageView alloc] init];
+    i.frame = cell.backgroundView.frame;
+    cell.backgroundView = i;
+    [i setImageWithURL:[NSURL URLWithString:self.pictures[indexPath.row][@"picture"]]];
     return cell;
 }
 
