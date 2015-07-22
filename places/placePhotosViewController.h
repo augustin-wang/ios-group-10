@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface placePhotosViewController : UICollectionViewController
+@property (strong, nonatomic) NSMutableArray *pictures;
 
 @end

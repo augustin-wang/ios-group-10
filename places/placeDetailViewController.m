@@ -7,6 +7,7 @@
 //
 
 #import "placeDetailViewController.h"
+#import "placePhotosViewController.h"
 #import "facebookPlaces.h"
 #import "UIButton+AFNetworking.h"
 
@@ -42,6 +43,11 @@
     myAnnotation.coordinate = self.mapView.centerCoordinate;
     myAnnotation.title = self.data[@"name"];
     [self.mapView addAnnotation:myAnnotation];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    placePhotosViewController *destinationVC = segue.destinationViewController;
+    destinationVC.pictures = self.pictures;
 }
 
 @end
