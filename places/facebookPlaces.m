@@ -8,6 +8,8 @@
 
 #import "facebookPlaces.h"
 #import "AFHTTPRequestOperationManager.h"
+#import <SVProgressHUD.h>
+
 #define CLCOORDINATE_EPSILON 0.0005f
 #define CLCOORDINATES_EQUAL( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
@@ -79,12 +81,14 @@ NSString *apiURL = @"https://graph.facebook.com/%@";
     if (token) {
         [parameters setObject:token forKey:@"access_token"];
     }
-
+    [SVProgressHUD show];
     [manager GET:token ? [NSString stringWithFormat:apiURL, @"search"] : fakeApiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         NSLog(@"call place api success!");
         self.places = responseObject[@"data"];
 //        NSLog(@"----API result: %@", self.places);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         NSLog(@"call facebook api error! %@", error);
     }];
 }
@@ -109,7 +113,6 @@ NSString *apiURL = @"https://graph.facebook.com/%@";
 
     [manager GET:token ? [NSString stringWithFormat:apiURL, placeid] : fakeApiURL2 parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         successCallback(responseObject);
-        NSLog(@"----API result: %@", self.places);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"call facebook api error! %@", error);
         failedCallback(error);
@@ -118,7 +121,6 @@ NSString *apiURL = @"https://graph.facebook.com/%@";
 
 -(void)setCurrentCenter:(CLLocationCoordinate2D)currentCenter {
     if (!CLCOORDINATES_EQUAL(currentCenter, _currentCenter)) {
-        NSLog(@"query api! %f, %f", _currentCenter.latitude, _currentCenter.longitude);
         NSLog(@"query api! %f, %f", currentCenter.latitude, currentCenter.longitude);
         _currentCenter = currentCenter;
         [self queryPlaces];
